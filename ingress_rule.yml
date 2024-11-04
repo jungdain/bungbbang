@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-fruits
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: www.bungbungbbang.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /bungbungbbang(/|$)
+        backend:
+          service:
+            name: svc-bungbungbbang
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: /dann0524(/|$)
+        backend:
+          service:
+            name: svc-dann0524
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: /($)
+        backend:
+          service:
+            name: svc-bungbungbbang
+            port: 
+              number: 80
